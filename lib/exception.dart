@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 
 class MsalMobileException implements Exception {
   final String message;
-  final String errorCode;
-  final MsalMobileException innerException;
+  final String? errorCode;
+  final MsalMobileException? innerException;
 
   MsalMobileException(
-      {@required this.message, this.errorCode, this.innerException});
+      {required this.message, this.errorCode, this.innerException});
 
   MsalMobileException.fromErrorCode(MsalMobileExceptionErrorCode code)
       : message = code.message,
@@ -14,15 +14,15 @@ class MsalMobileException implements Exception {
         innerException = null;
 
   MsalMobileException.fromErrorCodeWithInner(
-      MsalMobileExceptionErrorCode code, Exception innerException)
+      MsalMobileExceptionErrorCode code, MsalMobileException innerException)
       : message = code.message,
         errorCode = code.errorCode,
         innerException = innerException;
 
   MsalMobileException.copy(
       MsalMobileException exception, MsalMobileException innerException)
-      : message = exception?.message,
-        errorCode = exception?.errorCode,
+      : message = exception.message,
+        errorCode = exception.errorCode,
         innerException = innerException;
 
   MsalMobileException.fromJson(Map<String, dynamic> json)
